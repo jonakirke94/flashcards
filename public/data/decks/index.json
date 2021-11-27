@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Svelte",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Svelte_Logo.svg",
+    "description": "Tool for building fast web applications",
+    "slug": "svelte"
+  },
+  {
+    "name": "Terraform",
+    "icon": "https://www.datocms-assets.com/2885/1620155116-brandhcterraformverticalcolor.svg",
+    "description": "Infastructure as code (IaC) tool that allows you to build, change, and version infrastructure.",
+    "slug": "terraform"
+  }
+]
