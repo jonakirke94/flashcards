@@ -9,6 +9,7 @@
   <input
     id="search"
     placeholder="Svelte"
+    autocomplete="off"
     class="py-2 px-4 rounded-md w-full dark:bg-black dark:text-gray-100"
     type="search"
     bind:value={query}

@@ -24,14 +24,12 @@
   });
 
   export function onSuccess() {
-    // move bucket
-    // next
+    questionProvider.move(currentCard, 1);
     currentCard = questionProvider.next();
   }
 
   export function onFailure() {
-    // move bucket
-    // next
+    questionProvider.move(currentCard, -1);
     currentCard = questionProvider.next();
   }
 
@@ -45,13 +43,11 @@
     {#if isLoading}
       <Loader />
     {:else}
-      <div class="w-full bg-yellow-100 h-96 rounded-md">
-        <FlashCard
-          card={currentCard}
-          on:success={onSuccess}
-          on:failure={onFailure}
-        />
-      </div>
+      <FlashCard
+        card={currentCard}
+        on:success={onSuccess}
+        on:failure={onFailure}
+      />
     {/if}
   </div>
 </div>

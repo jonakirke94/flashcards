@@ -14,7 +14,6 @@
   });
 
   function toggleDarkMode() {
-    console.log("togglign dark mode");
     isDarkMode = toggle();
   }
 
@@ -50,6 +49,6 @@
   @tailwind utilities;
 
   body {
-    @apply bg-white dark:bg-gray-800;
+    @apply bg-gray-50 dark:bg-gray-800;
   }
 </style>
