@@ -25,7 +25,10 @@
 <Router>
   <header class="max-w-3xl mx-auto flex justify-between w-full mt-8 ">
     <nav>
-      <Link to="/">Home</Link>
+      <Link
+        class="py-2 px-4 focus-within:ring-gray-800 focus-within:ring-2 focus-within:ring-offset-2"
+        to="/">Home</Link
+      >
     </nav>
 
     <ButtonDarkMode on:click={toggleDarkMode} {isDarkMode} />

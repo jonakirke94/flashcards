@@ -6,10 +6,8 @@ class Bucket {
   }
 
   pick() {
-    console.log("Selecting from bucket level: ", this.level);
     // Pick the LRU item
-    const item = this.items.sort((a, b) => b.seen - a.seen)[0];
-    console.log(item.seen, "SEEN");
+    const item = [...this.items].sort((a, b) => b.seen - a.seen)[0];
     return {
       ...item,
       level: this.level,
@@ -49,11 +47,11 @@ export class QuestionProvider {
     this.buckets = [
       // All items go into the first bucket initially
       // Use zero-index for ease of use
-      new Bucket(allQuestions, 0, 53.125),
-      new Bucket([], 1, 25),
-      new Bucket([], 2, 12.5),
-      new Bucket([], 3, 6.225),
-      new Bucket([], 4, 3.125),
+      new Bucket(allQuestions, 0, 1000),
+      new Bucket([], 1, 500),
+      new Bucket([], 2, 250),
+      new Bucket([], 3, 125),
+      new Bucket([], 4, 62.5),
     ];
   }
 
@@ -79,26 +77,25 @@ export class QuestionProvider {
 
     const newBucket = this.buckets[item.level + increment];
 
-    console.log("The new bucket level!", newBucket.level);
     newBucket.add(item);
   }
 
   selectBucket() {
-    console.log("Running select bucket");
     // Select a bucket by using a weighted random
     // A straightforward algo for picking an item at random:
     // 1. Calculate sum of all the weights
     // 2. Pick a random number that is 0 or greater and is less than the sum of the weights
     // 3. Iterate through the buckets one at a time, subtracting their weight from your random number until you get the bucket where the random number is less than the bucket's weight
 
-    // Total sum is always 100 in our case
-    const sumOfWeights = 100;
+    const sumOfWeights = this.buckets.reduce((acc, bucket) => {
+      return (acc += bucket.weight);
+    }, 0);
 
-    // Pick a random number between 1 and 100
+    // Pick a random number between 1 and sum of weights
     let rnd = Math.random() * sumOfWeights + 1;
 
     for (const bucket of this.buckets) {
-      if (rnd <= bucket.weight) {
+      if (rnd < bucket.weight) {
         if (bucket.isEmpty()) {
           return this.selectBucket();
         }
@@ -108,5 +105,7 @@ export class QuestionProvider {
 
       rnd -= bucket.weight;
     }
+
+    console.error("No bucket found. Should never reach here", rnd);
   }
 }
