@@ -1,0 +1,34 @@
+[
+  {
+    "question": "When does Svelte perform it's main workfload?",
+    "answer": "Svelte does it's work during the compile-time, whereas other frameworks like Vue and React do their job in the browser"
+  },
+  {
+    "question": "What does hydrating mean in the context web development?",
+    "answer": "Svelte does it's work during the compile-time, whereas other frameworks like Vue and React do their job in the browser"
+  },
+  {
+    "question": "What is a Svelte KIT endpoint?",
+    "answer": "Endpoints are modules written in .js (or .ts) files that export functions corresponding to HTTP methods."
+  },
+  {
+    "question": "asdasdadsfasdfasdf",
+    "answer": "Svelte does it's work during the compile-time, whereas other frameworks like Vue and React do their job in the browser"
+  },
+  {
+    "question": "Wsgdfgsdfgsdfgevelopment?",
+    "answer": "Svelte does it's work during the compile-time, whereas other frameworks like Vue and React do their job in the browser"
+  },
+  {
+    "question": "Wha6trtwertwertwetndpoint?",
+    "answer": "Endpoints are modules written in .js (or .ts) files that export functions corresponding to HTTP methods."
+  },
+  {
+    "question": "Wha6øapoint?",
+    "answer": "Endpoints are modules written in .js (or .ts) files that export functions corresponding to HTTP methods."
+  },
+  {
+    "question": "Wha6trtwasdfastwetndpoint?",
+    "answer": "Endpoints are modules written in .js (or .ts) files that export functions corresponding to HTTP methods."
+  }
+]
