@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import IconEmojiHappy from "./icons/IconEmojiHappy.svelte";
   import IconEmojiSad from "./icons/IconEmojiSad.svelte";
   import IconNext from "./icons/IconNext.svelte";
@@ -65,11 +65,8 @@
   <div class="flex space-x-8" slot="footer">
     {#if showFront}
       <BaseButtonRounded tooltip="Show me the answer" on:click={handleFlip}>
-        <IconEmojiSad
-          classes="text-indigo-600 dark:text-white h-6 w-6"
-          slot="icon"
-        />
-        <span class="text-sm text-white font-semibold">Turn</span>
+        <IconEmojiSad classes="action-icon" slot="icon" />
+        <span class="action-text">Turn</span>
       </BaseButtonRounded>
 
       <BaseButtonRounded
@@ -77,22 +74,16 @@
         tooltip="Show me the next question"
         on:click={() => dispatch("success")}
       >
-        <IconEmojiHappy
-          classes="text-indigo-600 dark:text-white h-6 w-6"
-          slot="icon"
-        />
-        <span class="text-sm text-white font-semibold">I know this</span>
+        <IconEmojiHappy class="action-icon" slot="icon" />
+        <span class="action-text">I know this</span>
       </BaseButtonRounded>
     {:else}
       <BaseButtonRounded
         tooltip="Next card"
         on:click={() => dispatch("failure")}
       >
-        <IconNext
-          classes="text-indigo-600 dark:text-white h-6 w-6"
-          slot="icon"
-        />
-        <span class="text-sm text-white font-semibold">Next card</span>
+        <IconNext classes="action-icon" slot="icon" />
+        <span class="action-text">Next card</span>
       </BaseButtonRounded>
     {/if}
   </div>
@@ -106,5 +97,13 @@
 
   .side {
     @apply absolute flex items-center justify-center overflow-hidden h-full w-full top-0 left-0;
+  }
+
+  .action-text {
+    @apply text-sm text-white font-semibold mt-1.5;
+  }
+
+  .action-icon {
+    @apply text-indigo-600 dark:text-white h-6 w-6;
   }
 </style>

@@ -23,7 +23,7 @@
   <button
     use:registerFocus
     title={tooltip}
-    class="{themeClasses} {sizeClasses} dark:bg-gray-700 dark:text-white dark:focus-within:ring-black rounded-full border-none flex items-center justify-center flex-shrink-0 focus-within:ring-2 focus-within:ring-offset-2"
+    class="{themeClasses} {sizeClasses} dark:bg-gray-700 dark:text-white dark:focus-within:ring-black rounded-md border-none flex items-center justify-center flex-shrink-0 focus-within:ring-2 focus-within:ring-offset-2"
     on:click
   >
     <slot name="icon" />

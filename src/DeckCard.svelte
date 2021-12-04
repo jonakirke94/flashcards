@@ -13,7 +13,7 @@
 </script>
 
 <li
-  class="{themeClasses} relative border dark:bg-gray-700 dark:focus-within:ring-gray-800 dark:hover:border-gray-800 dark:border-gray-500 px-6 py-5 shadow-sm flex items-center space-x-3 focus-within:ring-2 focus-within:ring-offset-2"
+  class="{themeClasses} relative border rounded-md dark:bg-gray-700 dark:focus-within:ring-gray-800 dark:hover:border-gray-800 dark:border-gray-500 px-6 py-5 shadow-sm flex items-center space-x-3 focus-within:ring-2 focus-within:ring-offset-2"
 >
   <div class="flex-shrink-0">
     <img class="h-10 w-10 rounded-full" src={deck.icon} alt="Deck Icon" />

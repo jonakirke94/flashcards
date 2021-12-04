@@ -35,6 +35,7 @@
 <style>
   .bg-striped-red,
   .bg-striped-red::before {
+    @apply rounded-md;
     background: linear-gradient(
         117.88deg,
         rgba(254, 226, 226, 0.2) 2.87%,
@@ -47,6 +48,7 @@
 
   .bg-striped-green,
   .my-bg-striped-green::before {
+    @apply rounded-md;
     background: linear-gradient(
         117.88deg,
         rgba(209, 250, 229, 0.2) 2.87%,
@@ -59,6 +61,7 @@
 
   .bg-striped-purple,
   .bg-striped-purple::before {
+    @apply rounded-md;
     background: linear-gradient(
         117.88deg,
         rgba(237, 233, 254, 0.2) 2.87%,

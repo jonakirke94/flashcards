@@ -1,4 +1,13 @@
 [  {
   "question": "What is terraform?",
   "answer": "Nobody knows"
-}]
+},
+{
+  "question": "What is the extension of a terraform file?",
+  "answer": ".tf"
+},
+{
+  "question": "Which configuration language are terraform files written in?",
+  "answer": "HCL (HashiCorp Configuration Language)"
+}
+]

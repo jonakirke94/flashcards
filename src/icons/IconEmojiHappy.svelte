@@ -1,11 +1,6 @@
-<script>
-  export let classes;
-</script>
-
 <!-- HeroIcon: emoji-happy -->
 
 <svg
-  class={classes}
   fill="none"
   stroke="currentColor"
   viewBox="0 0 24 24"
