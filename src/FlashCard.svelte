@@ -31,8 +31,6 @@
   export let name;
 
   export let registerFocus;
-
-  console.log(card, "card");
 </script>
 
 <BaseCard {color}>

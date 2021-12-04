@@ -1,5 +1,7 @@
 const DeckApi = {
-  base: location.origin,
+  base: location.origin.includes("localhost")
+    ? location.origin
+    : `${location.origin}/flashcards`,
 
   getDecks() {
     return fetch(`${this.base}/data/decks/index.json`).then((response) =>

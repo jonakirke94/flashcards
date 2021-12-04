@@ -28,7 +28,7 @@
     <header class="max-w-3xl mx-auto flex justify-between w-full mt-8 ">
       <nav>
         <Link
-          class="py-2 px-4 focus-within:ring-gray-800 rounded-md focus-within:ring-2 focus-within:ring-offset-2"
+          class="py-2 px-4 focus-within:ring-gray-800 dark:text-gray-100 rounded-md focus-within:ring-2 focus-within:ring-offset-2"
           to="/">Home</Link
         >
       </nav>

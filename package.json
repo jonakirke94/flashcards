@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "rollup -c",
+    "deploy": "rollup -c && node ./gh-pages.js",
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear --single"
   },
