@@ -4,10 +4,13 @@
 
   import FlashCard from "./FlashCard.svelte";
   import Loader from "./Loader.svelte";
+  import Error from "./Error.svelte";
 
-  import MOVES from "./questionProvider/moves";
+  import { getNotificationsContext } from "./notifications/context";
 
-  import { QuestionProvider } from "./questionProvider/engine";
+  import MOVES from "./flashcardEngine/moves";
+
+  import { Engine as FlashCardEngine } from "./flashcardEngine/engine";
 
   import { useFocus } from "svelte-navigator";
 
@@ -17,27 +20,45 @@
 
   let isLoading = true;
 
+  let hasError = false;
+
   let questionProvider = null;
 
   onMount(async () => {
-    deck = await deckApi.getBySlug(slug);
+    try {
+      deck = await deckApi.getBySlug(slug);
 
-    var deckInfo = await deckApi.getDecks();
-    color = deckInfo.find((x) => x.slug === slug).theme;
+      var allDecks = await deckApi.getDecks();
+      var currentDeck = allDecks.find((x) => x.slug === slug);
 
-    questionProvider = new QuestionProvider(deck);
-    currentCard = questionProvider.next();
+      color = currentDeck.theme;
+      name = currentDeck.name;
 
-    isLoading = false;
+      questionProvider = new FlashCardEngine(deck);
+      currentCard = questionProvider.next();
+    } catch (error) {
+      hasError = true;
+    } finally {
+      isLoading = false;
+    }
   });
 
+  const { addNotification } = getNotificationsContext();
+
+  function onStreak(streakCount) {
+    addNotification({
+      msg: "You are on a streak!",
+      subtitle: `Your current streak is ${streakCount}`,
+    });
+  }
+
   export function onSuccess() {
-    questionProvider.move(currentCard, MOVES.INCREMENT);
+    questionProvider.move(currentCard, MOVES.INCREMENT, onStreak);
     currentCard = questionProvider.next();
   }
 
   export function onFailure() {
-    questionProvider.move(currentCard, MOVES.DECREMENT);
+    questionProvider.move(currentCard, MOVES.DECREMENT, onStreak);
     currentCard = questionProvider.next();
   }
 
@@ -45,6 +66,7 @@
 
   let deck = [];
   let color = "";
+  let name = "";
 </script>
 
 <div class="max-w-3xl mx-auto w-full mt-8">
@@ -52,8 +74,11 @@
     {#if isLoading}
       <h3>Loading..</h3>
       <Loader />
+    {:else if hasError}
+      <Error error="This deck does not exist" />
     {:else}
       <FlashCard
+        {name}
         {registerFocus}
         {color}
         card={currentCard}

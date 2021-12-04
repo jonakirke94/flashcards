@@ -14,9 +14,9 @@
 >
   <span slot="icon">
     {#if isDarkMode}
-      <IconMoonSolid classes="h-8 w-8 text-white" />
+      <IconMoonSolid class="h-8 w-8 text-white" />
     {:else}
-      <IconMoon classes="h-8 w-8 text-purple-700" />
+      <IconMoon class="h-8 w-8 text-purple-700" />
     {/if}
   </span>
 </BaseButtonRounded>

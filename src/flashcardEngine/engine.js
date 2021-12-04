@@ -28,7 +28,7 @@ class Bucket {
   }
 }
 
-export class QuestionProvider {
+export class Engine {
   constructor(deck) {
     if (!deck) {
       throw new Error("Deck is required");
@@ -53,6 +53,8 @@ export class QuestionProvider {
       new Bucket([], 3, 125),
       new Bucket([], 4, 62.5),
     ];
+
+    this.streak = 0;
   }
 
   next() {
@@ -60,8 +62,16 @@ export class QuestionProvider {
     return bucket.pick();
   }
 
-  move(item, increment) {
+  move(item, increment, onStreakHandler) {
     const bucket = this.buckets.find((bucket) => bucket.level === item.level);
+
+    // if increment is positive the answer was marked as correct. Increase streak by one otherwise reset to zero
+    this.streak = increment > 0 ? this.streak + 1 : 0;
+
+    // if the user is on a streak that is divisible of 5 i.e 5/10/15 trigger a streak
+    if (this.streak % 5 === 0 && this.streak > 0) {
+      onStreakHandler(this.streak);
+    }
 
     bucket.remove(item);
 

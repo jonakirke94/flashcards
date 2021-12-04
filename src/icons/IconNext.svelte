@@ -1,10 +1,14 @@
 <script>
-  export let classes;
+  let classNames;
+
+  // creates a `class` property, even
+  // though it is a reserved word
+  export { classNames as class };
 </script>
 
 <!-- HeroIcon: arrow-narrow-right -->
 <svg
-  class={classes}
+  class={classNames}
   fill="none"
   stroke="currentColor"
   viewBox="0 0 24 24"
