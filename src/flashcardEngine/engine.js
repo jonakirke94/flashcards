@@ -50,11 +50,11 @@ export class Engine {
     this.buckets = [
       // All items go into the first bucket initially
       // Use zero-index for ease of use
-      new Bucket([], 0, 1000),
+      new Bucket(allQuestions, 0, 1000),
       new Bucket([], 1, 500),
       new Bucket([], 2, 250),
       new Bucket([], 3, 125),
-      new Bucket(allQuestions, 4, 62.5),
+      new Bucket([], 4, 62.5),
     ];
 
     this.streak = 0;

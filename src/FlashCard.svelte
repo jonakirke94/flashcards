@@ -31,6 +31,8 @@
   export let name;
 
   export let registerFocus;
+
+  console.log(card, "card");
 </script>
 
 <BaseCard {color}>
@@ -62,11 +64,14 @@
     <div class="h-64">
       <div class="flippable">
         {#if showFront}
-          <div transition:flipTransition class="side text-white text-2xl">
+          <div transition:flipTransition|local class="side text-white text-2xl">
             Q: {card.question}
           </div>
         {:else}
-          <div transition:flipTransition class="side text-white text-2xl back">
+          <div
+            transition:flipTransition|local
+            class="side text-white text-2xl back"
+          >
             A: {card.answer}
           </div>
         {/if}
