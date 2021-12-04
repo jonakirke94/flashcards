@@ -7,7 +7,10 @@ class Bucket {
 
   pick() {
     // Pick the LRU item
-    const item = [...this.items].sort((a, b) => b.seen - a.seen)[0];
+    const item = [...this.items].sort((a, b) => b.seen - a.seen)[
+      this.items.length - 1
+    ];
+
     return {
       ...item,
       level: this.level,
@@ -47,11 +50,11 @@ export class Engine {
     this.buckets = [
       // All items go into the first bucket initially
       // Use zero-index for ease of use
-      new Bucket(allQuestions, 0, 1000),
+      new Bucket([], 0, 1000),
       new Bucket([], 1, 500),
       new Bucket([], 2, 250),
       new Bucket([], 3, 125),
-      new Bucket([], 4, 62.5),
+      new Bucket(allQuestions, 4, 62.5),
     ];
 
     this.streak = 0;
@@ -73,8 +76,6 @@ export class Engine {
       onStreakHandler(this.streak);
     }
 
-    bucket.remove(item);
-
     // If the item is already at the highest level, don't move it
     if (item.level === this.buckets.length - 1 && increment > 0) {
       return;
@@ -84,6 +85,8 @@ export class Engine {
     if (item.level === 0 && increment < 0) {
       return;
     }
+
+    bucket.remove(item);
 
     const newBucket = this.buckets[item.level + increment];
 
@@ -97,19 +100,23 @@ export class Engine {
     // 2. Pick a random number that is 0 or greater and is less than the sum of the weights
     // 3. Iterate through the buckets one at a time, subtracting their weight from your random number until you get the bucket where the random number is less than the bucket's weight
 
-    const sumOfWeights = this.buckets.reduce((acc, bucket) => {
+    const nonEmptyBuckets = [...this.buckets].filter(
+      (bucket) => !bucket.isEmpty()
+    );
+
+    const sumOfWeights = [...nonEmptyBuckets].reduce((acc, bucket) => {
       return (acc += bucket.weight);
     }, 0);
 
     // Pick a random number between 1 and sum of weights
-    let rnd = Math.random() * sumOfWeights + 1;
+    let rnd1 = Math.random() * sumOfWeights;
 
-    for (const bucket of this.buckets) {
-      if (rnd < bucket.weight) {
-        if (bucket.isEmpty()) {
-          return this.selectBucket();
-        }
+    let rnd = rnd1 + 1;
 
+    for (const bucket of nonEmptyBuckets) {
+      const isLessThan = rnd <= bucket.weight;
+      // isLessThan < 1 is an edge case where the random number is just above the bucket's weight
+      if (isLessThan || isLessThan < 1) {
         return bucket;
       }
 

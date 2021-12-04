@@ -37,7 +37,7 @@
   <!-- Body -->
 
   <div slot="header">
-    <h1 class="text-white font-semibold text-3xl">{name} Flashcards</h1>
+    <h1 class="text-white font-semibold text-3xl">{name} flashcards</h1>
 
     <span
       class="flex text-sm text-white font-semibold absolute right-2 top-2"

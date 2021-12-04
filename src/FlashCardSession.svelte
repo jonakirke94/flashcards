@@ -38,6 +38,7 @@
       currentCard = questionProvider.next();
     } catch (error) {
       hasError = true;
+      console.error(error);
     } finally {
       isLoading = false;
     }
@@ -72,7 +73,6 @@
 <div class="max-w-3xl mx-auto w-full mt-8">
   <div class="flex justify-center items-center h-full mt-16">
     {#if isLoading}
-      <h3>Loading..</h3>
       <Loader />
     {:else if hasError}
       <Error error="This deck does not exist" />
